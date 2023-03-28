@@ -17,7 +17,7 @@ resource "aws_sns_topic" "this" {
 # Topic Policy
 ################################################################################
 resource "aws_sns_topic_policy" "this" {
-  #count =  var.create_topic_policy ? 1 : 0
+  count =  var.create_topic_policy ? 1 : 0
 
   arn    = aws_sns_topic.this[0].arn
   policy = data.aws_iam_policy_document.this[0].json
