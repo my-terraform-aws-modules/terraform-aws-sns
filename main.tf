@@ -24,7 +24,7 @@ resource "aws_sns_topic_policy" "this" {
 }
 
 data "aws_iam_policy_document" "this" {
-  count = var.create_topic_policy ? 1 : 0
+  #count = var.create_topic_policy ? 1 : 0
 
   source_policy_documents   = var.source_topic_policy_documents
   override_policy_documents = var.override_topic_policy_documents
