@@ -85,6 +85,11 @@ variable "topic_policy_statements" {
 ################################################################################
 # Subscription(s)
 ################################################################################
+variable "sns_arn" {
+  type = string
+  default = ""
+}
+
 variable "enable_email_subscribe" {
     type = bool
     default = false

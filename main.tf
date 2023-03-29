@@ -111,7 +111,7 @@ data "aws_iam_policy_document" "this" {
 resource "aws_sns_topic_subscription" "lambda_subscription" {
   count = var.enable_lambda_subscribe ? 1 : 0
 
-  topic_arn = aws_sns_topic.this[0].arn
+  topic_arn = var.sns_arn
   protocol = "lambda"
   endpoint = var.lambda_endpoint
 }
@@ -119,7 +119,7 @@ resource "aws_sns_topic_subscription" "lambda_subscription" {
 resource "aws_sns_topic_subscription" "email_subscription" {
   count = var.enable_email_subscribe ? 1 : 0
 
-  topic_arn = aws_sns_topic.this[0].arn
+  topic_arn = var.sns_arn
   protocol = "email"
   endpoint = var.email_endpoint
 }
@@ -127,7 +127,7 @@ resource "aws_sns_topic_subscription" "email_subscription" {
 resource "aws_sns_topic_subscription" "sqs_subscription" {
   count = var.enable_sqs_subscribe ? 1 : 0
 
-  topic_arn = aws_sns_topic.this[0].arn
+  topic_arn = var.sns_arn
   protocol = "sqs"
   endpoint = var.sqs_endpoint
 }
