@@ -1,4 +1,8 @@
-
+variable "region" {
+  description = "name of the aws region"
+  type = string
+  default = "eu-west-1"
+}
 ################################################################################
 # Topic
 ################################################################################
@@ -6,12 +10,12 @@
 variable "create_topic" {
   description = "Determines whether resources will be created (affects all resources)"
   type        = bool
-  default     = false
+  default     = true
 }
 variable "environment" {
   description = "The environment to deploy to."
   type        = string
-  default     = ""
+  default     = "dev"
   validation {
     condition     = contains(["dev", "prod", "sit", "snd", "uat"], var.environment)
     error_message = "Valid values for var: environment are (dev, prod, sit, snd, uat)."
@@ -20,7 +24,7 @@ variable "environment" {
 variable "sns_name" {
   description = "The name of the SNS topic to create"
   type        = string
-  default     = ""
+  default     = "demosns"
 }
 
 variable "use_name_prefix" {
@@ -86,36 +90,42 @@ variable "topic_policy_statements" {
 # Subscription(s)
 ################################################################################
 variable "sns_arn" {
+  description = "the arn of the sns topic"
   type = string
   default = ""
 }
 
 variable "enable_email_subscribe" {
-    type = bool
-    default = false
+  description = "whether sns topic subscribed to email or not"
+  type = bool
+  default = false
   
 }
 variable "enable_lambda_subscribe" {
-    type = bool
-    default = false
+  description = "Determine sns topic subscribed to lambda or not"
+  type = bool
+  default = false
   
 }
 variable "enable_sqs_subscribe" {
-    type = bool
-    default = false
+  description = "Determine sns topic subscribed to sqs or not"
+  type = bool
+  default = false
   
 }
 variable "email_endpoint" {
-    type = string
-    default = ""
+  description = "mention the email endpoint"
+  type = string
+  default = ""
 }
 variable "lambda_endpoint" {
-    type = string
-    default = ""
+  description = "give the arn of the lambda"
+  type = string
+  default = ""
   
 }
 variable "sqs_endpoint" {
-    type = string
-    default = ""
-  
+  description = "arn of the sqs"
+  type = string
+  default = "" 
 }
